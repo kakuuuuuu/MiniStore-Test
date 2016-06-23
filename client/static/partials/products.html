@@ -1,0 +1,42 @@
+<div class='row' ng-controller='productsController'>
+  <div class='col s3'>
+    <form ng-submit='addProduct()'>
+      <h3>Add a Product</h3>
+      <h5 ng-bind='errors[0].error.errors.name.message'></h5>
+      <h5 ng-bind='errors[0].error.errors.url.message'></h5>
+      <div class='input-field'>
+        <input type='text' ng-model='new_product.name' class='validate'/>
+        <label for='name'>Name</label>
+      </div>
+      <div class='input-field'>
+        <input type='text' ng-model='new_product.url' class='validate'/>
+        <label for='name'>Image Url</label>
+      </div>
+      <div class='input-field'>
+        <textarea ng-model='new_product.description'></textarea>
+        <label for='name'>Description</label>
+      </div>
+      <div class='input-field'>
+        <select class='browser-default' ng-model='selectedQty' ng-options='option.val for option in options'>
+
+        </select>
+      </div>
+      <div class='input-field'>
+        <button type='submit' class='waves-effect waves-light btn'>Add Product</button>
+      </div>
+    </form>
+  </div>
+  <div class='col s8 row'>
+    <div class='col s3' ng-repeat='product in products'>
+      <p ng-bind='product.name'></p>
+      <p ng-bind='product.url'></p>
+      <p ng-bind='product.description'></p>
+      <p ng-bind='product.qty'></p>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+      $('select').material_select();
+  });
+</script>

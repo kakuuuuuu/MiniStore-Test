@@ -1,0 +1,43 @@
+<div class='container' ng-controller='ordersController'>
+  <div class='col s5'>
+    <h4>Add Order</h4>
+    <h5 ng-bind='errors[0]'></h5>
+    <form ng-submit='addOrder()'>
+      <label>Select Product</label>
+      <div class='input-field col s5'>
+        <select class='browser-default' ng-change='update()' ng-model="selectedProduct" ng-options="product.name for product in products"></select>
+      </div>
+      <div class='input-field col s5'>
+        <select class='browser-default' ng-model='selectedCustomer' ng-options='customer.name for customer in customers'></select>
+      </div>
+      <div class='input-field col s5'>
+        <select class='browser-default' ng-model='qty' ng-options='i as i for i in list'></select>
+      </div>
+      <button type='submit' class='waves-effect waves-light btn'>Create Order</button>
+    </form>
+  </div>
+  <div class='container'>
+    <div class='input-field'>
+      <input type='text' ng-model='filter_name' class='validate'/>
+      <label for='name'>Filter</label>
+    </div>
+    <table class='highlight'>
+      <tr>
+        <th>Customer Name</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Date Created</th>
+      </tr>
+      <tr ng-repeat='order in orders | filter:filter_name track by $index'>
+        <td ng-bind='order._customer.name'></td>
+        <td ng-bind='order._product.name'></td>
+        <td ng-bind='order.qty'></td>
+        <td ng-bind='order.date'></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<script>$(document).ready(function() {
+    $('select').material_select();
+});</script>

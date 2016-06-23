@@ -1,0 +1,19 @@
+<div class='container' ng-controller='ordersController'>
+  <div class='row'>
+    <div class='col s2' ng-repeat='product in products | limitTo: 5'>
+      <p ng-bind='product.url'></p>
+      <p ng-bind='product.name'></p>
+      <p>(<span ng-bind='product.qty'></span> left)</p>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col s6'>
+      <p ng-repeat='order in orders | orderBy:id:reverse  | limitTo: 3'><span ng-bind='order._customer.name'></span> ordered <span ng-bind='order._product.name'></span> on <span ng-bind='order.date'></span></p>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col s6'>
+      <p ng-repeat='customer in customers | orderBy:id:reverse | limitTo: 3'><span ng-bind='customer.name'></span> joined on <span ng-bind='customer.date'></span></p>
+    </div>
+  </div>
+</div>
